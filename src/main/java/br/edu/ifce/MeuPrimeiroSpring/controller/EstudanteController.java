@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import br.edu.ifce.MeuPrimeiroSpring.model.Estudante;
 import br.edu.ifce.MeuPrimeiroSpring.serviceImpl.EstudanteServiceImpl;
@@ -14,6 +15,12 @@ import br.edu.ifce.MeuPrimeiroSpring.serviceImpl.EstudanteServiceImpl;
 @Controller
 @RequestMapping("/estudantes")
 public class EstudanteController {
+	
+	@GetMapping
+	public ModelAndView estudantes() {
+		ModelAndView mv = new ModelAndView("estudante/lista.html");
+		return mv;
+	}
 
 	@Autowired
 	EstudanteServiceImpl estudante;
@@ -27,13 +34,13 @@ public class EstudanteController {
 	@PostMapping("/salvar")
 	public String salvar(Estudante est) {
 		estudante.salvar(est);
-		return "redirect:/estudantes/listar";
+		return "redirect:/estudantes/lista.html";
 	}
 	
 	@GetMapping("/listar")
 	public String listar(ModelMap model) {
 		model.addAttribute("estudante", estudante.buscarTodos());
-		return "/estudantes/lista";	
+		return "/estudantes/lista.html";	
 	}
 	
 	@GetMapping("/editar/{id}")

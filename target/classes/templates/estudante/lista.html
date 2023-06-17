@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Estudantes</title>
+</head>
+<body>
+    <h1>Estudantes Cadastrados</h1>
+
+    <ul>
+        <th:block th:each="estudante : ${estudante}">
+            <li th:text="${estudante.nome}"></li>
+        </th:block>
+    </ul>
+</body>
+</html>

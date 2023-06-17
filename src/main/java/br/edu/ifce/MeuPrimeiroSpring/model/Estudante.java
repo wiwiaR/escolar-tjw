@@ -1,7 +1,9 @@
 package br.edu.ifce.MeuPrimeiroSpring.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
 
@@ -9,13 +11,16 @@ import jakarta.validation.constraints.NotBlank;
 public class Estudante {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private Long id;
 	
 	@NotBlank
+	@Column(name = "nome")
 	private String nome;
 	
 	@NotBlank
+	@Column(name = "matricula")
 	private String matricula;
 	
 	public Long getId() {
