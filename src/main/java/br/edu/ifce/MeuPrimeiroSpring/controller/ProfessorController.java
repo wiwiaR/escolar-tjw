@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import br.edu.ifce.MeuPrimeiroSpring.model.Professor;
 import br.edu.ifce.MeuPrimeiroSpring.serviceImpl.ProfessorServiceImpl;
@@ -18,10 +19,15 @@ public class ProfessorController {
 	@Autowired
 	ProfessorServiceImpl professor;
 	
+	@GetMapping
+	public ModelAndView professores(ModelMap model) {
+		model.addAttribute("prof", professor.buscarTodos());
+		return new ModelAndView("professor/lista.html");
+	}
+	
 	@GetMapping("/cadastrar")
-	public String cadastrar(ModelMap model) {
-		model.addAttribute("prof", new Professor());
-		return "/professores/cadastro";
+	public ModelAndView cadastrar(Professor prof) {
+		return new ModelAndView("professor/cadastro.html");
 	}
 	
 	@PostMapping("/salvar")
@@ -31,15 +37,15 @@ public class ProfessorController {
 	}
 	
 	@GetMapping("/listar")
-	public String listar(ModelMap model) {
-		model.addAttribute("professor", professor.buscarTodos());
-		return "/professores/lista";	
+	public ModelAndView listar(ModelMap model) {
+		model.addAttribute("prof", professor.buscarTodos());
+		return new ModelAndView("professor/lista.html");
 	}
 	
 	@GetMapping("/editar/{id}")
-	public String preEditar(@PathVariable("id") Long id, ModelMap model) {
+	public ModelAndView preEditar(@PathVariable("id") Long id, ModelMap model) {
 		model.addAttribute("prof", professor.buscarPorId(id));
-		return "/professores/cadastro";
+		return new ModelAndView("professor/edicao.html");
 	}
 	
 	@PostMapping ("/editar")

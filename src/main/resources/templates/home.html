@@ -1,90 +1,30 @@
 <!DOCTYPE html>
-<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
-						xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<title>Acadêmico</title>
-	<meta charset="UTF-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-	<meta name="description" content="" />
-	<meta name="author" content="" />
-	<link rel="icon" href="/image/favicon.png" />
-
-	<!-- Bootstrap core CSS -->
-	<link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-	<link href="/webjars/open-iconic/font/css/open-iconic-bootstrap.min.css" rel="stylesheet" />
-	
-	<!-- Custom styles for this template -->
-	<link href="/css/style.css" rel="stylesheet" />
+<title>Acadêmico</title>
 </head>
 <body>
-	<header>
-		<nav class="navbar navbar-inverse navbar navbar-dark bg-dark fixed-top">
-			<div class="container-fluid">
-				<div class="navbar-header">
-					<button type="button" class="btn btn-dark navbar-toggle pull-left">
-						<i class="oi oi-menu"></i>
-					</button>
-					<a class="navbar-brand " href="#">Acadêmico</a>
-				</div>
-			</div>
-		</nav>
-	</header>
+	<h1>Acadêmico</h1>
+
+	<p>Bem-vindo à página Acadêmico!</p>
+
+	<p>Aqui você pode encontrar informações relacionadas aos estudos,
+		pesquisas e atividades acadêmicas.</p>
+
+	<p>Sinta-se à vontade para explorar o conteúdo e aproveitar os
+		recursos disponíveis.</p>
+
+	<form th:action="@{/estudantes}" method="get">
+		<button type="submit">Estudantes</button>
+	</form>
 	
-	<div class="layout-main">	
+	<form th:action="@{/professores}" method="get">
+		<button type="submit">Professores</button>
+	</form>
 	
-		<aside>
-			<nav class="sidebar sidebar-open">
-				<ul class="nav nav-pills">
-					<li class="nav-item"><a class="nav-link " href="/"> <i
-							class="oi oi-home"></i> <span>Página Inicial</span>
-					</a></li>
-				</ul>
-
-				<ul class="nav nav-pills">
-					<li class="nav-item"><span class="nav-link active" >Estudantes</span></li>
-					<li class="nav-item"><a class="nav-link"
-						th:href="@{/estudantes/cadastrar}"> <i class="oi oi-plus"></i> <span>Cadastrar</span>
-					</a></li>
-					<li class="nav-item"><a class="nav-link"
-						th:href="@{/estudantes/listar}"> <i class="oi oi-spreadsheet"></i>
-							<span>Listar </span>
-					</a></li>
-				</ul>
-
-			</nav>
-		</aside>
-			
-	<section class="layout-content">	
-	</section>		
-	
-	</div>
-		<footer class="layout-footer">
-		<div class="container">
-			<span class="footer-copy">&copy; TJW</span>
-		</div>
-	</footer> 
-
-	<!-- Bootstrap core JavaScript
-    ================================================== -->
-	<!-- Placed at the end of the document so the pages load faster -->
-	<script src="/webjars/jquery/jquery.min.js"></script>
-	<script src="/webjars/jquery-mask-plugin/dist/jquery.mask.min.js"></script>
-	<script	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
-	<script type="text/javascript">
-	    
-		$(function() {
-			$('[data-toggle="popover"]').popover();
-		});
-		
-		$(document).ready(function(){
-		    $(".navbar-toggle").click(function(){
-		        $(".sidebar").toggleClass("sidebar-open");
-		    })
-		});
-
-	</script>
+	<form th:action="@{/turmas}" method="get">
+		<button type="submit">Turmas</button>
+	</form>
 
 </body>
 </html>

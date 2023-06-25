@@ -2,21 +2,21 @@
 <html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Estudantes</title>
+<title>Turmas</title>
 </head>
 <body>
-	<h1>Estudantes Cadastrados</h1>
-	<form th:action="@{/estudantes/cadastrar}" method="get">
+	<h1>Turmas Cadastrados</h1>
+	<form th:action="@{/turmas/cadastrar}" method="get">
 		<button type="submit">Cadastrar</button>
 	</form>
 
 	<ul>
-		<li th:each="estudante : ${est}">
-		<span th:text="${estudante.nome}"></span>
-		<form th:action="@{/estudantes/editar/{id} (id=${estudante.id})}" method="get">
+		<li th:each="turma : ${tur}">
+		<span th:text="${turma.disciplina}"></span>
+		<form th:action="@{/turmas/editar/{id} (id=${turma.id})}" method="get">
                 <button type="submit">Editar</button>
             </form>
-		<form th:action="@{/estudantes/excluir/{id} (id=${estudante.id})}" method="get">
+		<form th:action="@{/turmas/excluir/{id} (id=${turma.id})}" method="get">
                 <button type="submit">Excluir</button>
             </form>
 	</ul>

@@ -16,37 +16,36 @@ import br.edu.ifce.MeuPrimeiroSpring.serviceImpl.EstudanteServiceImpl;
 @RequestMapping("/estudantes")
 public class EstudanteController {
 	
-	@GetMapping
-	public ModelAndView estudantes() {
-		ModelAndView mv = new ModelAndView("estudante/lista.html");
-		return mv;
-	}
-
 	@Autowired
 	EstudanteServiceImpl estudante;
+
+	@GetMapping
+	public ModelAndView estudantes(ModelMap model) {
+		model.addAttribute("est", estudante.buscarTodos());
+		return new ModelAndView("estudante/lista.html");
+	}
 	
 	@GetMapping("/cadastrar")
-	public String cadastrar(ModelMap model) {
-		model.addAttribute("est", new Estudante());
-		return "/estudantes/cadastro";
+	public ModelAndView cadastrar(Estudante est) {
+		return new ModelAndView("estudante/cadastro.html");
 	}
 	
 	@PostMapping("/salvar")
 	public String salvar(Estudante est) {
 		estudante.salvar(est);
-		return "redirect:/estudantes/lista.html";
+		return "redirect:/estudantes/listar";
 	}
 	
 	@GetMapping("/listar")
-	public String listar(ModelMap model) {
-		model.addAttribute("estudante", estudante.buscarTodos());
-		return "/estudantes/lista.html";	
+	public ModelAndView listar(ModelMap model) {
+		model.addAttribute("est", estudante.buscarTodos());
+		return new ModelAndView("estudante/lista.html");
 	}
 	
 	@GetMapping("/editar/{id}")
-	public String preEditar(@PathVariable("id") Long id, ModelMap model) {
+	public ModelAndView preEditar(@PathVariable("id") Long id, ModelMap model) {
 		model.addAttribute("est", estudante.buscarPorId(id));
-		return "/estudantes/cadastro";
+		return new ModelAndView("estudante/edicao.html");
 	}
 	
 	@PostMapping ("/editar")

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import br.edu.ifce.MeuPrimeiroSpring.model.Turma;
 import br.edu.ifce.MeuPrimeiroSpring.serviceImpl.TurmaServiceImpl;
@@ -17,11 +18,16 @@ public class TurmaController {
 	
 	@Autowired
 	TurmaServiceImpl turma;
+	
+	@GetMapping
+	public ModelAndView turmas(ModelMap model) {
+		model.addAttribute("tur", turma.buscarTodos());
+		return new ModelAndView("turma/lista.html");
+	}
 
 	@GetMapping("/cadastrar")
-	public String cadastrar(ModelMap model) {
-		model.addAttribute("tur", new Turma());
-		return "/turmas/cadastro";
+	public ModelAndView cadastrar(Turma tur) {
+		return new ModelAndView("turma/cadastro.html");
 	}
 	
 	@PostMapping("/salvar")
@@ -31,15 +37,15 @@ public class TurmaController {
 	}
 	
 	@GetMapping("/listar")
-	public String listar(ModelMap model) {
-		model.addAttribute("turma", turma.buscarTodos());
-		return "/turmas/lista";	
+	public ModelAndView listar(ModelMap model) {
+		model.addAttribute("tur", turma.buscarTodos());
+		return new ModelAndView("turma/lista.html");
 	}
 	
 	@GetMapping("/editar/{id}")
-	public String preEditar(@PathVariable("id") Long id, ModelMap model) {
+	public ModelAndView preEditar(@PathVariable("id") Long id, ModelMap model) {
 		model.addAttribute("tur", turma.buscarPorId(id));
-		return "/turmas/cadastro";
+		return new ModelAndView("turma/edicao.html");
 	}
 	
 	@PostMapping ("/editar")

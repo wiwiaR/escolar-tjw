@@ -41,5 +41,4 @@ public class Estudante {
 	public void setMatricula(String matricula) {
 		this.matricula = matricula;
 	}
-	
 }

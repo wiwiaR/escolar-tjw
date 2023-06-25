@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Turma</title>
+</head>
+<body>
+    <h1>Editar Turma</h1>
+
+    <form th:action="@{/turmas/editar}" th:object="${tur}" method="POST">
+        <input type="hidden" th:field="*{id}" />
+        
+        <label for="disciplina">Disciplina:</label>
+        <input type="text" id="disciplina" class="form-control" th:field="*{disciplina}" name="disciplina" required><br>
+        
+        <button type="submit">Atualizar</button>
+    </form>
+
+    <form th:action="@{/turmas}" method="get">
+        <button type="submit">Voltar</button>
+    </form>
+</body>
+</html>
