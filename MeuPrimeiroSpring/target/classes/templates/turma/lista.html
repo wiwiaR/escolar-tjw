@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Turmas</title>
+</head>
+<body>
+	<h1>Turmas Cadastrados</h1>
+	<form th:action="@{/turmas/cadastrar}" method="get">
+		<button type="submit">Cadastrar</button>
+	</form>
+
+	<ul>
+		<li th:each="turma : ${tur}">
+		<span th:text="${turma.disciplina}"></span>
+		<form th:action="@{/turmas/editar/{id} (id=${turma.id})}" method="get">
+                <button type="submit">Editar</button>
+            </form>
+		<form th:action="@{/turmas/excluir/{id} (id=${turma.id})}" method="get">
+                <button type="submit">Excluir</button>
+            </form>
+	</ul>
+	<form th:action="@{/}" method="get">
+		<button type="submit">Home</button>
+	</form>
+</body>
+</html>

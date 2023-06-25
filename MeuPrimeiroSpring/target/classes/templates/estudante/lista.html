@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Estudantes</title>
+</head>
+<body>
+	<h1>Estudantes Cadastrados</h1>
+	<form th:action="@{/estudantes/cadastrar}" method="get">
+		<button type="submit">Cadastrar</button>
+	</form>
+
+	<ul>
+		<li th:each="estudante : ${est}">
+		<span th:text="${estudante.nome}"></span>
+		<form th:action="@{/estudantes/editar/{id} (id=${estudante.id})}" method="get">
+                <button type="submit">Editar</button>
+            </form>
+		<form th:action="@{/estudantes/excluir/{id} (id=${estudante.id})}" method="get">
+                <button type="submit">Excluir</button>
+            </form>
+	</ul>
+	<form th:action="@{/}" method="get">
+		<button type="submit">Home</button>
+	</form>
+</body>
+</html>

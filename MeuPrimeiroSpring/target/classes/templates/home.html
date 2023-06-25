@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Acadêmico</title>
+</head>
+<body>
+	<h1>Acadêmico</h1>
+
+	<p>Bem-vindo à página Acadêmico!</p>
+
+	<p>Aqui você pode encontrar informações relacionadas aos estudos,
+		pesquisas e atividades acadêmicas.</p>
+
+	<p>Sinta-se à vontade para explorar o conteúdo e aproveitar os
+		recursos disponíveis.</p>
+
+	<form th:action="@{/estudantes}" method="get">
+		<button type="submit">Estudantes</button>
+	</form>
+	
+	<form th:action="@{/professores}" method="get">
+		<button type="submit">Professores</button>
+	</form>
+	
+	<form th:action="@{/turmas}" method="get">
+		<button type="submit">Turmas</button>
+	</form>
+
+</body>
+</html>
